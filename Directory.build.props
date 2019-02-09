@@ -1,0 +1,13 @@
+﻿<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)</SolutionDir>
+    <BuildArtifactsDir>$( [System.IO.Path]::Combine( '$(SolutionDir)', '_build', '$(Configuration)', '$(MSBuildProjectName)' ) )</BuildArtifactsDir>
+
+    <IntermediateOutputPath>$( [System.IO.Path]::Combine( '$(BuildArtifactsDir)', 'obj' ) )</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>$(IntermediateOutputPath)</BaseIntermediateOutputPath>
+
+    <OutputPath>$( [System.IO.Path]::Combine( '$(BuildArtifactsDir)', 'bin' ) )</OutputPath>
+  </PropertyGroup>
+</Project>
