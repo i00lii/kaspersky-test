@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaspersky.Utils", "Kaspersky.Utils\Kaspersky.Utils.csproj", "{EC4E89F3-D3E1-489D-BDEF-3792566BEBBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaspersky.Tests", "Kaspersky.Tests\Kaspersky.Tests.csproj", "{235FCF47-E593-4F78-B2DB-AC0BD08594F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kaspersky.Tests", "Kaspersky.Tests\Kaspersky.Tests.csproj", "{235FCF47-E593-4F78-B2DB-AC0BD08594F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaspersky.Api", "Kaspersky.Api\Kaspersky.Api.csproj", "{5AC3B780-03A9-4B2B-B6FD-6D8E7356F78A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{235FCF47-E593-4F78-B2DB-AC0BD08594F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235FCF47-E593-4F78-B2DB-AC0BD08594F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235FCF47-E593-4F78-B2DB-AC0BD08594F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC3B780-03A9-4B2B-B6FD-6D8E7356F78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC3B780-03A9-4B2B-B6FD-6D8E7356F78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC3B780-03A9-4B2B-B6FD-6D8E7356F78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC3B780-03A9-4B2B-B6FD-6D8E7356F78A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
