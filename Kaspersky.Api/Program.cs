@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using Kaspersky.Database;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -33,12 +36,15 @@ namespace Kaspersky.Api
             public void ConfigureServices( IServiceCollection services )
                 => services
                 .ConfigureSwagger()
+                .ConfigureDatabase()
                 .AddMvc()
                 .ConfigureJson()
                 .SetCompatibilityVersion( CompatibilityVersion.Version_2_1 );
 
             public void Configure( IApplicationBuilder appBuilder, IHostingEnvironment envirenment )
             {
+                EnsureDb();
+
                 if (envirenment.IsDevelopment())
                     appBuilder.UseDeveloperExceptionPage();
 
@@ -46,6 +52,16 @@ namespace Kaspersky.Api
                     .UseSwagger()
                     .UseSwaggerUI( options => options.SwaggerEndpoint( "/swagger/v1/swagger.json", typeof( Program ).Namespace.ToString() ) )
                     .UseMvc();
+
+                void EnsureDb()
+                {
+                    using (var scope = appBuilder.ApplicationServices.CreateScope())
+                    using (var db = scope.ServiceProvider.GetService<BookshelfContext>())
+                    {
+                        db.Database.EnsureCreated();
+                        Mockdata.InsertAsync( db ).GetAwaiter().GetResult();
+                    }
+                }
             }
         }
     }
@@ -74,6 +90,14 @@ namespace Kaspersky.Api
 
             );
 
+        public static IServiceCollection ConfigureDatabase( this IServiceCollection services )
+        {
+            var connection = new SqliteConnection( "DataSource=:memory:" );
+            connection.Open();
+
+            return services.AddDbContext<BookshelfContext>( options => options.UseSqlite( connection ) );
+        }
+
         public static IMvcBuilder ConfigureJson( this IMvcBuilder mvcBuilder )
         {
             return mvcBuilder
@@ -89,4 +113,5 @@ namespace Kaspersky.Api
                 settings.NullValueHandling = NullValueHandling.Ignore;
             }
         }
+    }
 }
