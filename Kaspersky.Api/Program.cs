@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using Kaspersky.Database;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -39,8 +41,9 @@ namespace Kaspersky.Api
                 .ConfigureSwagger()
                 .ConfigureDatabase()
                 .AddAutoMapper()
-                .AddMvc()
+                .AddMvc( options => options.Filters.Add( new ModelValidatorFilter() ) )
                 .ConfigureJson()
+                .AddFluentValidation( options => options.RegisterValidatorsFromAssemblyContaining<Program>() )
                 .SetCompatibilityVersion( CompatibilityVersion.Version_2_1 );
 
             public void Configure( IApplicationBuilder appBuilder, IHostingEnvironment envirenment )
@@ -64,6 +67,19 @@ namespace Kaspersky.Api
                         Mockdata.InsertAsync( db ).GetAwaiter().GetResult();
                     }
                 }
+            }
+        }
+
+        private sealed class ModelValidatorFilter : IActionFilter
+        {
+            public void OnActionExecuting( ActionExecutingContext context )
+            {
+                if (!context.ModelState.IsValid)
+                    context.Result = new BadRequestObjectResult( context.ModelState );
+            }
+
+            public void OnActionExecuted( ActionExecutedContext context )
+            {
             }
         }
     }
