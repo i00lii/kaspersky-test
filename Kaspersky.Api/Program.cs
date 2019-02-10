@@ -1,4 +1,5 @@
-﻿using Kaspersky.Database;
+﻿using AutoMapper;
+using Kaspersky.Database;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,7 @@ namespace Kaspersky.Api
                 => services
                 .ConfigureSwagger()
                 .ConfigureDatabase()
+                .AddAutoMapper()
                 .AddMvc()
                 .ConfigureJson()
                 .SetCompatibilityVersion( CompatibilityVersion.Version_2_1 );
