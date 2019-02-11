@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kaspersky.Api\Kaspersky.Api.csproj" />
     <ProjectReference Include="..\Kaspersky.Utils\Kaspersky.Utils.csproj" />
   </ItemGroup>
 
