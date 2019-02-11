@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kaspersky.Api.Common
+﻿namespace Kaspersky.Api.Common
 {
     public static class ApiResponse
     {

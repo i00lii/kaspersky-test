@@ -1,9 +1,6 @@
 ﻿using Kaspersky.Database.Configuration;
 using Kaspersky.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Kaspersky.Database
 {

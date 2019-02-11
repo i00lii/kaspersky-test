@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using System;
 using DbAuthor = Kaspersky.Database.Models.Author;
 
 namespace Kaspersky.Api.Bookshelf.Models

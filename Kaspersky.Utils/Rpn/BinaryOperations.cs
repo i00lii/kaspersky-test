@@ -39,7 +39,7 @@ namespace Kaspersky.Utils.Rpn.Operations
 
     internal readonly struct Divide : IBinaryOperationLogic
     {
-        public double Apply( double x, double y ) => x / (y != 0 ? y : throw new DivideByZeroException());
+        public double Apply( double x, double y ) => x / (y != 0d ? y : throw new DivideByZeroException());
     }
 
     internal readonly struct PowerOf : IBinaryOperationLogic

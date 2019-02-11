@@ -25,9 +25,9 @@ namespace Kaspersky.Utils.Text
             bool LooksLikeModernIsbn()
                 => normalizedIsbn.Count == _isbn13Size
                 && (normalizedIsbn.Groups.Count == 1 || normalizedIsbn.Groups.Count == 5)
-                && StartsWith978or979();
+                && StartsWith978Or979();
 
-            bool StartsWith978or979()
+            bool StartsWith978Or979()
             {
                 var group = normalizedIsbn.Groups[0];
                 var prefix = group.Count >= 3 ? Int32.Parse( value.AsSpan( group.Index, 3 ) ) : default;

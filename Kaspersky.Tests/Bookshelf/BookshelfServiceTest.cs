@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Kaspersky.Api.Bookshelf;
 using Kaspersky.Api.Bookshelf.Models;
 using Kaspersky.Api.Bookshelf.Service;
 using Kaspersky.Database;
@@ -7,7 +6,6 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;

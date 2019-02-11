@@ -17,7 +17,7 @@ namespace Kaspersky.Api.Bookshelf
     [ApiController]
     public sealed class BookshelfController : ControllerBase
     {
-        private static Thumbnail.Validator _thumbnailValidator = new Thumbnail.Validator();
+        private static readonly Thumbnail.Validator _thumbnailValidator = new Thumbnail.Validator();
 
         private readonly IBookshelfService _bookshelf;
 

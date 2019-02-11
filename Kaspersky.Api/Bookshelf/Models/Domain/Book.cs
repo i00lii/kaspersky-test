@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Kaspersky.Utils.Text;
-using System;
 using System.Collections.Generic;
 using DbBook = Kaspersky.Database.Models.Book;
 

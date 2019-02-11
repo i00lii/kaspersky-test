@@ -21,7 +21,7 @@ namespace Kaspersky.Utils.Text
 
         public override int GetHashCode()
         {
-            int hashCode = 371125220;
+            var hashCode = 371125220;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode( Value );
             hashCode = hashCode * -1521134295 + EqualityComparer<Offset>.Default.GetHashCode( Offset );
             return hashCode;

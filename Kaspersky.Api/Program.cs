@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
-using Kaspersky.Api.Bookshelf;
 using Kaspersky.Api.Bookshelf.Service;
 using Kaspersky.Database;
 using Microsoft.AspNetCore;

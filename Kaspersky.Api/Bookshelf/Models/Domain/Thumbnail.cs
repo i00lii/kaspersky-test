@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using System;
 using DbThumbnail = Kaspersky.Database.Models.Thumbnail;
 
 namespace Kaspersky.Api.Bookshelf.Models
