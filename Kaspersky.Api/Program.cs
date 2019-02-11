@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
 using Kaspersky.Api.Bookshelf.Service;
+using Kaspersky.Api.Common;
 using Kaspersky.Database;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -43,7 +44,14 @@ namespace Kaspersky.Api
                 .ConfigureSwagger()
                 .ConfigureDatabase()
                 .AddAutoMapper()
-                .AddMvc( options => options.Filters.Add( new ModelValidatorFilter() ) )
+                .AddMvc
+                (
+                    options =>
+                    {
+                        options.Filters.Add( new ModelValidatorFilter() );
+                        options.Filters.Add( new DefaultExceptionFilter() );
+                    }
+                )
                 .ConfigureJson()
                 .AddFluentValidation( options => options.RegisterValidatorsFromAssemblyContaining<Program>() )
                 .SetCompatibilityVersion( CompatibilityVersion.Version_2_1 );
@@ -82,6 +90,19 @@ namespace Kaspersky.Api
 
             public void OnActionExecuted( ActionExecutedContext context )
             {
+            }
+        }
+
+        private sealed class DefaultExceptionFilter : IExceptionFilter
+        {
+            public void OnException( ExceptionContext context )
+            {
+                const int errorCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                context.Result = new ObjectResult
+                (
+                    new ApiError( errorCode, context.Exception.Message )
+                )
+                { StatusCode = errorCode };
             }
         }
     }
