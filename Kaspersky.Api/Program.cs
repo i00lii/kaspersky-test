@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
+using Kaspersky.Api.Bookshelf;
+using Kaspersky.Api.Bookshelf.Service;
 using Kaspersky.Database;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +40,7 @@ namespace Kaspersky.Api
 
             public void ConfigureServices( IServiceCollection services )
                 => services
+                .AddScoped<IBookshelfService, BookshelfService>()
                 .ConfigureSwagger()
                 .ConfigureDatabase()
                 .AddAutoMapper()
